@@ -9,11 +9,11 @@ import com.ideas2it.user_service.dto.RoleDto;
 
 /**
  * RoleRepository repository for Role table.
- * @author Kowshik Bharathi M
+ * 
+ * @author Vigneshwaran N
  */
 @Repository
 @EnableJpaRepositories
-public interface RoleRepository extends  JpaRepository<RoleDto, UUID>{
+public interface RoleRepository extends JpaRepository<RoleDto, UUID> {
 
-	
 }

@@ -17,26 +17,60 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+/**
+ * RoleDto represent role table.
+ * 
+ * @author Vigneshwaran N
+ *
+ */
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name="role_tb")
-public class RoleDto implements Serializable{
+@Table(name = "role_tb")
+public class RoleDto implements Serializable {
 	@Id
-	@Column(name="role_id",columnDefinition = "VARCHAR(200)",insertable = false, updatable = false, nullable = false)
-	@Type(type="uuid-char")
+	@Column(name = "role_id", columnDefinition = "VARCHAR(200)", insertable = false, updatable = false, nullable = false)
+	@Type(type = "uuid-char")
 	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid",strategy = "uuid2")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private UUID roleId;
-	@Column(name="role_name")
+	@Column(name = "role_name")
 	private String roleName;
-	@OneToMany(targetEntity = UserDto.class,cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="role_id",referencedColumnName = "role_id")
+	@OneToMany(targetEntity = UserDto.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "role_id", referencedColumnName = "role_id")
 	private List<UserDto> users;
+
+	public RoleDto() {
+		super();
 	}
-	
+
+	public RoleDto(UUID roleId, String roleName, List<UserDto> users) {
+		super();
+		this.roleId = roleId;
+		this.roleName = roleName;
+		this.users = users;
+	}
+
+	public UUID getRoleId() {
+		return roleId;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public List<UserDto> getUsers() {
+		return users;
+	}
+
+	public void setRoleId(UUID roleId) {
+		this.roleId = roleId;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public void setUsers(List<UserDto> users) {
+		this.users = users;
+	}
+
+}

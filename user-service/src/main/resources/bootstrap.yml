@@ -1,0 +1,28 @@
+spring:
+   application:
+      name: Healthcare-Management-User-API
+   cloud:
+      config:
+         uri: http://localhost:8888
+      consul:
+         host: localhost
+         port: 8500
+      vault:
+         scheme: http
+         kv:
+            enabled: true
+         uri: http://localhost:8200
+         token: s.VDfF2zZ7I11KF1vC7r43Z8xk
+   datasource:
+     hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 20
+server:
+   port: 8080
+jwt:
+   secret: vicky
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
